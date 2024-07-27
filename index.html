@@ -1,29 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude Account Switcher</title>
+    <title>Claude 账号切换器</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-        .account-selector {
-            margin-bottom: 20px;
+        .account-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .account-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .account-card h3 {
+            margin: 10px 0;
+        }
+        .account-card p {
+            margin: 5px 0;
         }
     </style>
 </head>
 <body>
-    <h1>Claude Account Switcher</h1>
-    <div class="account-selector">
-        <label for="account">Select Account:</label>
-        <select id="account" onchange="switchAccount()">
-            <option value="account1">Account 1</option>
-            <option value="account2">Account 2</option>
-            <option value="account3">Account 3</option>
-        </select>
+    <h1>普通账号区</h1>
+    <div class="account-grid">
+        <div class="account-card" onclick="switchAccount('account1')">
+            <h3>3.5</h3>
+            <h3>claude sonnet3.5-10车</h3>
+            <p>实时状态: 空闲-推荐</p>
+        </div>
+        <div class="account-card" onclick="switchAccount('account2')">
+            <h3>3.5</h3>
+            <h3>claude sonnet3.5-9车</h3>
+            <p>实时状态: 空闲-推荐</p>
+        </div>
+        <!-- Add more account cards here -->
     </div>
+
     <div id="account-info">
         <!-- Account info will be displayed here -->
     </div>
@@ -32,31 +53,27 @@
         const accounts = {
             "account1": {
                 "apiKey": "YOUR_API_KEY_1",
-                "email": "account1@example.com"
+                "email": "account1@example.com",
+                "status": "空闲-推荐"
             },
             "account2": {
                 "apiKey": "YOUR_API_KEY_2",
-                "email": "account2@example.com"
+                "email": "account2@example.com",
+                "status": "空闲-推荐"
             },
-            "account3": {
-                "apiKey": "YOUR_API_KEY_3",
-                "email": "account3@example.com"
-            }
+            // Add more accounts here
         };
 
-        function switchAccount() {
-            const selectedAccount = document.getElementById("account").value;
-            const accountInfo = accounts[selectedAccount];
+        function switchAccount(accountKey) {
+            const accountInfo = accounts[accountKey];
             document.getElementById("account-info").innerHTML = `
                 <h2>Account Information</h2>
                 <p><strong>Email:</strong> ${accountInfo.email}</p>
                 <p><strong>API Key:</strong> ${accountInfo.apiKey}</p>
+                <p><strong>Status:</strong> ${accountInfo.status}</p>
             `;
             // Here you can add additional code to update your application with the selected account's API key
         }
-
-        // Initialize with the first account selected
-        switchAccount();
     </script>
 </body>
 </html>
