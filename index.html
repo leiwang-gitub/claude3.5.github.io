@@ -1,1 +1,62 @@
-<h1>欢迎来到阿甘兄弟的主页！</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Account Switcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .account-selector {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Claude Account Switcher</h1>
+    <div class="account-selector">
+        <label for="account">Select Account:</label>
+        <select id="account" onchange="switchAccount()">
+            <option value="account1">Account 1</option>
+            <option value="account2">Account 2</option>
+            <option value="account3">Account 3</option>
+        </select>
+    </div>
+    <div id="account-info">
+        <!-- Account info will be displayed here -->
+    </div>
+
+    <script>
+        const accounts = {
+            "account1": {
+                "apiKey": "YOUR_API_KEY_1",
+                "email": "account1@example.com"
+            },
+            "account2": {
+                "apiKey": "YOUR_API_KEY_2",
+                "email": "account2@example.com"
+            },
+            "account3": {
+                "apiKey": "YOUR_API_KEY_3",
+                "email": "account3@example.com"
+            }
+        };
+
+        function switchAccount() {
+            const selectedAccount = document.getElementById("account").value;
+            const accountInfo = accounts[selectedAccount];
+            document.getElementById("account-info").innerHTML = `
+                <h2>Account Information</h2>
+                <p><strong>Email:</strong> ${accountInfo.email}</p>
+                <p><strong>API Key:</strong> ${accountInfo.apiKey}</p>
+            `;
+            // Here you can add additional code to update your application with the selected account's API key
+        }
+
+        // Initialize with the first account selected
+        switchAccount();
+    </script>
+</body>
+</html>
